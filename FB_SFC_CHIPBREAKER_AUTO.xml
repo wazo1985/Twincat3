@@ -1455,7 +1455,7 @@ CASE	SfcChipBreakerAuto.Step	OF
 				END_IF;
 	(*---------------------------------------------------------Move Z-Axis to Z-No Touch Position-------------------------------------------*)
 	5000:
-				(*Transition*)
+				(*Transition*) (*wait for new operation*)
 				IF	RTrigNextStep.Q OR
 					TestZ
 					THEN
@@ -1465,12 +1465,12 @@ CASE	SfcChipBreakerAuto.Step	OF
 	5010:		(*Action*)
 				IF 	StepActionImPulse
 					THEN
-						AxisState																:=	STATE_WAIT_NEWOPERATION;
-						AxisCtrl[AxisNo.ZAxis].Command.OperationMode.CmdMoveAbsolut				:=	TRUE;
+						AxisState											:=	STATE_WAIT_NEWOPERATION;
+						AxisCtrl[AxisNo.ZAxis].Command.OperationMode.CmdMoveAbsolut					:=	TRUE;
 						AxisCtrl[AxisNo.ZAxis].Command.ExternalControl.override						:=	100;
-						AxisCtrl[AxisNo.ZAxis].Command.OperationMode.CmdMoveAbsolutTouchProbe	:=	TRUE;
-						AxisCtrl[AxisNo.ZAxis].Command.NominalValue.PositionMoveAbsolut				:=	ZNoTouch;
-						AxisCtrl[AxisNo.ZAxis].Command.NominalValue.VeloMoveAbsolut				:=	0.25;
+						AxisCtrl[AxisNo.ZAxis].Command.OperationMode.CmdMoveAbsolutTouchProbe				:=	TRUE;
+						AxisCtrl[AxisNo.ZAxis].Command.NominalValue.PositionMoveAbsolut					:=	ZNoTouch;
+						AxisCtrl[AxisNo.ZAxis].Command.NominalValue.VeloMoveAbsolut					:=	0.25;
 				END_IF;
 				(*Transition*)
 				IF	StepAction AND
@@ -1503,7 +1503,7 @@ CASE	SfcChipBreakerAuto.Step	OF
 	(*---------------------------------------------------------------Wait For User Interaction---------------------------------------------------*)
 	5020:		(*Transition*)
 				IF	RTrigNextStep.Q  OR
-					TestZ
+					TREU
 					THEN
 						StepNew				:=	5030;
 						StartMonitoringAaxis	:=	TRUE;
@@ -1808,8 +1808,9 @@ CASE	SfcChipBreakerAuto.Step	OF
 				IF	RTrigNextStep.Q OR
 					TestZ
 					THEN
-						StepNew		:=	9830;
+						StepNew		:=	9830;	(*next step*)
 				END_IF;
+			//	if stepper
 
 
 	(*############################Stop During Touching Process###############*)
