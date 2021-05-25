@@ -23,7 +23,11 @@
     <dataTypes />
     <pous>
       <pou name="FB_SFC_CHIPBREAKER_AUTO" pouType="functionBlock">
-        <interface>
+        <interface> 
++
+
+
+tttttt
           <inputVars>
             <variable name="YDistanceToTouchPos">
               <type>
