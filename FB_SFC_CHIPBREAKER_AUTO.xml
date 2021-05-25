@@ -2597,7 +2597,7 @@ END_IF;
 				END_IF;
 
 	(* ----------------------------------------------- move y-axis to position 0 : Ref--------------------------------------- *)
-	27	:	(* action: move y-axis to position 0 *)
+	2700	:	(* action: move y-axis to position 0 *)
 				IF	StepActionImPulse
 					THEN
 						(* y-axis *)
